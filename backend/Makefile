@@ -12,3 +12,12 @@ in-pip:
 out-pip:
 	exit
 ## ここまで
+
+
+# モデルの内容をデータベースに反映
+migrate:
+	python manage.py migrate
+
+# サーバの起動
+run-server:
+	python manage.py runserver
