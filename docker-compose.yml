@@ -4,24 +4,23 @@ services:
   backend:
     build: ./backend
     command: python manage.py runserver 0.0.0.0:8000
-    # データを永続化させる場合の設定。`host:container`でパスを記載
     volumes:
       - ./backend/:/usr/src/backend/
     ports:
       - 8000:8000
     environment:
-      - DEBUG=1
       - DATABASE_ENGINE=django.db.backends.postgresql
       - DATABASE_DB=sokuseki_db
       - DATABASE_USER=pos_db_user
       - DATABASE_PASSWORD=password1234
-      - DATABASE_HOST=postgres
+      - DATABASE_HOST=db
       - DATABASE_PORT=5432
       # setting.pyに記載されているSECRET_KEYを記入
       - SECRET_KEY=hoge
     depends_on:
-      - postgres
-  postgres:
+      - db
+
+  db:
     image: postgres:11.4-alpine
     volumes:
       - postgres_db:/var/lib/postgresql/data
@@ -30,6 +29,5 @@ services:
       - POSTGRES_PASSWORD=password1234
       - POSTGRES_DB=sokuseki_db
 
-# トップレベルに書く「名前付きvolumes」は複数サービスから参照できる
 volumes:
   postgres_db:
