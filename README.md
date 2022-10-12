@@ -45,3 +45,4 @@
 ### セットアップできているかの確認作業
 1. `make dc/up-build`でコンテナ作成
 2. `cd backend && make ls-docker-db`バックエンドに移動してデータベースの確認をする。`\l`で`sokuseki_db`dbが作成されているか確認
+3. adminURL`http://localhost:8000/admin/`でログインページでたらOK
