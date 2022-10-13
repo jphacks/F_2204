@@ -10,6 +10,8 @@ migrate:
 run:
 	docker-compose exec backend python manage.py runserver
 
+create-superuser:
+	docker-compose exec backend python manage.py createsuperuser
 # データベースの確認
 # 「\l」でdb確認
 ls-docker-db:
