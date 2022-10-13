@@ -46,3 +46,64 @@
 1. `make dc/up-build`でコンテナ作成
 2. `cd backend && make ls-docker-db`バックエンドに移動してデータベースの確認をする。`\l`で`sokuseki_db`dbが作成されているか確認
 3. adminURL`http://localhost:8000/admin/`でログインページでたらOK
+
+
+```mermaid
+erDiagram
+
+users {
+    integer user_id PK
+    string user_name
+    string address
+    string password
+}
+
+users_communities {
+    integer id PK
+    integer community_id FK
+    integer user_id FK
+}
+
+communities {
+    integer community_id PK
+    string cummunity_name
+} 
+
+articles {
+    integer article_id  PK
+    integer user_id FK 
+    string article_name 
+    string article_content
+    integer community_id FK
+    datetime date
+    datetime meeting_time
+    datetime created_at
+    integer participant_id
+}
+
+articles_users {
+    integer article_id FK
+    integer user_id FK
+}
+
+
+
+users ||--o{users_communities:""
+communities ||--o{users_communities:""
+
+articles ||--o{articles_users:""
+users ||--o{articles_users:""
+
+
+```
+
+
+## API 
+- /users/create POST ユーザ名を作成する
+- /users/:id       GET ユーザ情報を取得
+- /users/:id/update PUT ユーザ情報更新
+- /users/:id/articles GET ユーザが投稿した料理一覧
+- /users/:id/articles/:article_id GET ユーザが投稿した料理
+- /community/create POST コミュニティ作成
+- /community/:id    GET コミュニティを取得
+- /community/:id/users GET 参加する人(数)
