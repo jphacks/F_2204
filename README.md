@@ -78,7 +78,6 @@ articles {
     datetime date
     datetime meeting_time
     datetime created_at
-    integer participant_id
 }
 
 articles_users {
