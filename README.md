@@ -71,7 +71,6 @@ communities {
 
 articles {
     integer article_id  PK
-    integer user_id FK 
     string article_name 
     string article_content
     integer community_id FK
