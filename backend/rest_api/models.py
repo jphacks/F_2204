@@ -13,3 +13,9 @@ class User(models.Model):
 class Community(models.Model):
     community_id = models.AutoField(verbose_name="Community ID",primary_key=True)
     community_name = models.CharField(verbose_name="Community Name",max_length=255)
+
+# connect users and community table
+class Member(models.Model):
+    member_id = models.AutoField(verbose_name="Member ID",primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    community = models.ForeignKey(Community, on_delete=models.CASCADE)
