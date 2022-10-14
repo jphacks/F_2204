@@ -9,6 +9,8 @@ install:
 migrate:
 	docker-compose exec backend python manage.py  migrate --noinput
 
+migration:
+	docker-compose exec backend python manage.py   makemigrations
 # サーバの起動
 run:
 	docker-compose exec backend python manage.py runserver
