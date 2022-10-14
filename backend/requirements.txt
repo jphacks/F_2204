@@ -2,3 +2,5 @@ Django
 psycopg2-binary
 # firebase-admin
 djangorestframework
+markdown
+django-filter
