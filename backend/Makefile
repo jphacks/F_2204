@@ -2,6 +2,9 @@
 ## ここから
 # バックエンドセットアップに必要
 
+install:
+	pip install -r requirements.txt
+
 # docker内で実行
 migrate:
 	docker-compose exec backend python manage.py  migrate --noinput
