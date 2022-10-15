@@ -95,26 +95,24 @@ communities {
 
 articles {
     integer article_id  PK
-    integer user_id FK 
     string article_name 
+    string uri
     string article_content
     integer community_id FK
     datetime meeting_time
     datetime created_at
 }
-
-articles_users {
+article_community {
     integer article_id FK
-    integer user_id FK
+    integer community_id FK
 }
 
-
+articles ||--o{article_community:""
+communities ||--o{article_community:""
 
 users ||--o{users_communities:""
 communities ||--o{users_communities:""
 
-articles ||--o{articles_users:""
-users ||--o{articles_users:""
 
 
 ```
