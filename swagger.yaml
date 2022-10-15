@@ -107,7 +107,7 @@ paths:
         in: path
         required: true
     get:
-      summary: ユーザが持つ投稿一覧API
+      summary: ユーザの1つ投稿を取得するAPI
       tags:
         - article
       responses:
@@ -127,7 +127,7 @@ paths:
       operationId: get-users-user-id-articles
   /communities:
     get:
-      summary: コミュニティ一覧取得
+      summary: コミュニティ一覧取得するAPI
       responses:
         '200':
           description: OK
@@ -165,7 +165,7 @@ paths:
   /communities/join:
     parameters: []
     post:
-      summary: ''
+      summary: コミュニティに参加するAPI
       operationId: post-communities-join
       responses:
         '200':
@@ -175,6 +175,8 @@ paths:
           name: body
           schema:
             $ref: '#/definitions/CommunityJoinRequest'
+      tags:
+        - community
   /communities/:
     post:
       summary: コミュニティ作成API
@@ -225,7 +227,7 @@ paths:
       operationId: get-communities-community_id-users
   /articles:
     post:
-      summary: ''
+      summary: 投稿を作成するAPI
       operationId: post-articles
       responses:
         '201':
