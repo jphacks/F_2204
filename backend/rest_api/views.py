@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import User, Community, User_Community, Article
+from .models import User, Community, User_Community, Article, Article_Community
 from .serializer import UserSerializer, CommunitySerializer, User_CommunitySerializer,ArticleSerializer, Article_CommunitySerialzer
 
 
