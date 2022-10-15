@@ -18,3 +18,8 @@ class User_CommunitySerializer(serializers.ModelSerializer):
     class Meta:
         model = User_Community
         fields = ('member_id', 'user', 'community')
+        
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('article_id', 'uri', 'article_name', 'article_content', 'meeting_time')

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import User, Community, User_Community
-from .serializer import UserSerializer, CommunitySerializer, User_CommunitySerializer
+from .models import User, Community, User_Community, Article
+from .serializer import UserSerializer, CommunitySerializer, User_CommunitySerializer,ArticleSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -13,5 +13,9 @@ class CommunityViewSet(viewsets.ModelViewSet):
     
 class User_CommunityViewSet(viewsets.ModelViewSet):
     queryset = User_Community.objects.all()
-    serailizer_class = User_CommunitySerializer
+    serializer_class = User_CommunitySerializer
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
     
