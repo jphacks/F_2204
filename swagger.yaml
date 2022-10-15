@@ -1,9 +1,9 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: ""
+  description: ''
   version: 1.0.0
   title: TechTrain MISSION Game API
-host: "localhost:3030"
+host: 'localhost:3030'
 tags:
   - name: user
     description: ユーザ関連API
@@ -26,7 +26,7 @@ paths:
           description: Request Body
           required: true
           schema:
-            $ref: "#/definitions/UserCreateRequest"
+            $ref: '#/definitions/UserCreateRequest'
           x-examples:
             example-1:
               name: test_user_1
@@ -34,24 +34,24 @@ paths:
               password: test_password
               email: test@example.com
       responses:
-        "201":
+        '201':
           description: A successful response.
           schema:
-            $ref: "#/definitions/UserCreateResponse"
+            $ref: '#/definitions/UserCreateResponse'
           examples:
             example-1:
               user_id: 1
     parameters: []
-  "/users/{user_id}":
+  '/users/{user_id}':
     get:
       summary: ユーザ情報を取得する
       tags:
         - user
       responses:
-        "200":
+        '200':
           description: OK
           schema:
-            $ref: "#/definitions/User"
+            $ref: '#/definitions/User'
           examples:
             example-1:
               user_id: 1
@@ -64,7 +64,7 @@ paths:
         name: user_id
         in: path
         required: true
-  "/users/{user_id}/articles":
+  '/users/{user_id}/articles':
     parameters:
       - type: integer
         name: user_id
@@ -75,28 +75,28 @@ paths:
       tags:
         - article
       responses:
-        "200":
+        '200':
           description: OK
           schema:
-            $ref: "#/definitions/UserArticlesResponse"
+            $ref: '#/definitions/UserArticleListResponse'
           examples:
             example-1:
               - article_id: 1
                 user_id: 1
-                uri: "https://...."
+                uri: 'https://....'
                 article_name: test_article_1
                 article_content: test_article_content_2
-                meeting_time: "2022:10:10:20:00"
-                created_at: "2022:10:10:15:00"
+                meeting_time: '2022:10:10:20:00'
+                created_at: '2022:10:10:15:00'
               - article_id: 2
                 user_id: 2
-                uri: "https://...."
+                uri: 'https://....'
                 article_name: test_article_2
                 article_content: test_article_content_2
-                meeting_time: "2022:11:11:20:00"
-                created_at: "2022:11:11:15:00"
+                meeting_time: '2022:11:11:20:00'
+                created_at: '2022:11:11:15:00'
       operationId: get-users-user_id-articles
-  "/users/{user_id}/articles/{article_id}":
+  '/users/{user_id}/articles/{article_id}':
     parameters:
       - type: integer
         name: user_id
@@ -111,28 +111,28 @@ paths:
       tags:
         - article
       responses:
-        "200":
+        '200':
           description: OK
           schema:
-            $ref: "#/definitions/UserArticlesResponse"
+            $ref: '#/definitions/UserArticleListResponse'
           examples:
             example-1:
               - article_id: 1
                 user_id: 1
-                uri: "https:/..."
+                uri: 'https:/...'
                 article_name: test_article_name
                 article_content: test_article_content
-                meeting_time: ""
+                meeting_time: ''
                 created_at: string
       operationId: get-users-user-id-articles
   /communities:
     get:
       summary: コミュニティ一覧取得
       responses:
-        "200":
+        '200':
           description: OK
           schema:
-            $ref: "#/definitions/CommunityListGetResponse"
+            $ref: '#/definitions/CommunityListGetResponse'
           examples:
             example-1:
               - community_id: 1
@@ -142,27 +142,60 @@ paths:
       operationId: get-communities
       tags:
         - community
+  '/communities/{community_id}':
+    parameters:
+      - type: integer
+        name: community_id
+        in: path
+        required: true
+    get:
+      summary: IDからコミュニティ情報を取得するAPI
+      tags:
+        - community
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CommunityGetResponse'
+          examples:
+            example-1:
+              community_id: 1
+              community_name: test_community_1
+      operationId: get-communities-community_id
+  /communities/join:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-communities-join
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CommunityJoinRequest'
   /communities/:
     post:
       summary: コミュニティ作成API
       operationId: post-communities-create
       responses:
-        "201":
+        '201':
           description: Created
           schema:
-            $ref: "#/definitions/CommunityCreateResponse"
+            $ref: '#/definitions/CommunityCreateResponse'
       parameters:
         - in: body
           name: body
           schema:
-            $ref: "#/definitions/CommunityCreateRequest"
+            $ref: '#/definitions/CommunityCreateRequest'
           x-examples:
             example-1:
               community_name: test_community_1
       tags:
         - community
     parameters: []
-  "/communities/{community_id}":
+  '/communities/{community_id}/users':
     parameters:
       - type: integer
         name: community_id
@@ -173,32 +206,12 @@ paths:
       tags:
         - community
       responses:
-        "200":
-          description: OK
-          schema:
-            $ref: "#/definitions/CommunityGetResponse"
-          examples:
-            example-1:
-              community_id: 1
-              community_name: test_community_1
-      operationId: get-communities-community_id
-  "/communities/{community_id}/users":
-    parameters:
-      - type: integer
-        name: community_id
-        in: path
-        required: true
-    get:
-      summary: IDからコミュニティ情報を取得するAPI
-      tags:
-        - community
-      responses:
-        "200":
+        '200':
           description: OK
           schema:
             type: array
             items:
-              $ref: "#/definitions/User"
+              $ref: '#/definitions/User'
           examples:
             example-1:
               - user_id: 1
@@ -210,6 +223,35 @@ paths:
                 address: test_address_2
                 email: test_2@example.com
       operationId: get-communities-community_id-users
+  /articles:
+    post:
+      summary: ''
+      operationId: post-articles
+      responses:
+        '201':
+          description: Created
+      tags:
+        - article
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CreateArticleRequest'
+  /articles/join:
+    post:
+      summary: 投稿に参加するAPI
+      operationId: create-articles
+      responses:
+        '200':
+          description: OK
+      tags:
+        - article
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/ArticleJoinRequest'
+    parameters: []
 definitions:
   UserCreateRequest:
     type: object
@@ -230,14 +272,14 @@ definitions:
       - email
   UserCreateResponse:
     type: object
-    description: ""
+    description: ''
     properties:
       user_id:
         type: integer
     required:
       - user_id
   UserGetResponse:
-    $ref: "#/definitions/UserGetResponse"
+    $ref: '#/definitions/UserGetResponse'
   User:
     title: User
     x-stoplight:
@@ -257,7 +299,7 @@ definitions:
     x-stoplight:
       id: 2ixfjv2glqpz3
     type: object
-    description: ""
+    description: ''
     properties:
       article_id:
         type: integer
@@ -275,16 +317,35 @@ definitions:
         description: 開催日時
       created_at:
         type: string
-  UserArticlesResponse:
-    title: UserArticlesResponse
+  CreateArticleRequest:
+    title: CreateArticleRequest
+    x-stoplight:
+      id: 2ixfjv2glqpz3
+    type: object
+    description: ''
+    properties:
+      user_id:
+        type: integer
+      uri:
+        type: string
+        description: このuriを共有したグループだけが参加できる
+      article_name:
+        type: string
+      article_content:
+        type: string
+      meeting_time:
+        type: string
+        description: 開催日時
+  UserArticleListResponse:
+    title: UserArticleListResponse
     x-stoplight:
       id: gylb5d3itjvqx
     type: array
     items:
-      $ref: "#/definitions/Article"
+      $ref: '#/definitions/Article'
     description: ユーザが持つ投稿一覧
   UserArticleResponse:
-    $ref: "#/definitions/Article"
+    $ref: '#/definitions/Article'
   Community:
     title: Community
     x-stoplight:
@@ -296,14 +357,14 @@ definitions:
       community_name:
         type: string
   CommunityListGetResponse:
-    title: CommunityGetResponse
+    title: CommunityListGetResponse
     x-stoplight:
       id: cqe98fp2v7me5
     type: array
     items:
-      $ref: "#/definitions/Community"
+      $ref: '#/definitions/Community'
   CommunityGetResponse:
-    $ref: "#/definitions/Community"
+    $ref: '#/definitions/Community'
   CommunityCreateRequest:
     type: object
     properties:
@@ -321,3 +382,39 @@ definitions:
     required:
       - community_id
       - community_name
+  CommunityJoinRequest:
+    title: CommunityJoinRequest
+    x-stoplight:
+      id: 18ajas7ybk85x
+    type: object
+    properties:
+      user_id:
+        type: integer
+      community_id:
+        type: integer
+    required:
+      - user_id
+      - community_id
+  CommunityJoinResponse:
+    title: CommunityJoinResponse
+    x-stoplight:
+      id: 18ajas7ybk85x
+    type: object
+    properties:
+      user_id:
+        type: integer
+      community_id:
+        type: integer
+    required:
+      - user_id
+      - community_id
+  ArticleJoinRequest:
+    title: ArticleJoinRequest
+    x-stoplight:
+      id: etmk3niospfih
+    type: object
+    properties:
+      article_id:
+        type: integer
+      user_id:
+        type: integer
