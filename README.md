@@ -75,7 +75,6 @@ articles {
     string article_name 
     string article_content
     integer community_id FK
-    datetime date
     datetime meeting_time
     datetime created_at
 }
