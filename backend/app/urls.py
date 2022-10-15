@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from rest_api.views import UserViewSet,CommunityViewSet,User_CommunityViewSet, ArticleViewSet
+from rest_api.views import UserViewSet,CommunityViewSet,User_CommunityViewSet, ArticleViewSet, Article_CommunityViewSet
 
 defaultRouter = routers.DefaultRouter()
 
@@ -25,6 +25,7 @@ defaultRouter.register('users',UserViewSet)
 defaultRouter.register('communities', CommunityViewSet)
 defaultRouter.register('user_communities', User_CommunityViewSet)
 defaultRouter.register('article', ArticleViewSet)
+defaultRouter.register('article_communities', Article_CommunityViewSet)
 
 
 urlpatterns = [
