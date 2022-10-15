@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from unicodedata import category, name
 from django.db import models
 from django.utils import timezone
@@ -22,6 +23,7 @@ class User_Community(models.Model):
 
 class Article(models.Model):
     article_id = models.AutoField(verbose_name="ID",primary_key=True)
+    uri = models.URLField(verbose_name="URI", max_length=300, null=True)
     article_name = models.CharField(verbose_name="投稿タイトル",max_length=255)
     article_content = models.TextField(verbose_name="投稿内容",max_length=255)
     meeting_time = models.DateTimeField(verbose_name="開催日時", default=timezone.now())
