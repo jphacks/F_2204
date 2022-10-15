@@ -119,11 +119,11 @@ communities ||--o{users_communities:""
 
 
 ## API 
-- /users/create POST ユーザ名を作成する
+- /users POST ユーザ名を作成する
 - /users/:id       GET ユーザ情報を取得
-- /users/:id/update PUT ユーザ情報更新
 - /users/:id/articles GET ユーザが投稿した料理一覧
 - /users/:id/articles/:article_id GET ユーザが投稿した料理
-- /community/create POST コミュニティ作成
-- /community/:id    GET コミュニティを取得
-- /community/:id/users GET 参加する人(数)
+- /communities POST コミュニティ作成
+- /communities GET コミュニティ一覧
+- /communities/:id    GET コミュニティを取得
+- /communities/:id/users GET 参加する人(数)
