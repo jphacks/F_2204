@@ -5,6 +5,7 @@ from django.utils import timezone
 # ユーザ情報
 class User(models.Model):
     user_id =  models.AutoField(verbose_name="ユーザID",primary_key=True)
+    password = models.CharField(max_length=255, default="")
     user_name = models.CharField(verbose_name="ユーザ名",max_length=255)
     address = models.CharField(verbose_name="住所",max_length=255)
     created_at = models.DateTimeField(verbose_name='作成日時',auto_now_add=True) 
