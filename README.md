@@ -72,6 +72,7 @@ communities {
 articles {
     integer article_id  PK
     string article_name 
+    string uri
     string article_content
     datetime meeting_time
     datetime created_at
