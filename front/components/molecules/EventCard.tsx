@@ -1,54 +1,45 @@
-import { Badge, Box, Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { FC } from "react";
 
-const EventCard: FC = () => {
-  const property = {
-    title: "料理名",
-    userName: "ユーザー名",
-    communityName: "コミュニティ名",
-  };
+type Props = {
+  title: string;
+  userName: string;
+  communityName: string;
+  date: string;
+};
 
+const EventCard: FC<Props> = (props) => {
   return (
     <Box
       height={40}
-      maxW="sm"
-      minW="xs"
+      minW="320px"
       borderWidth="1px"
-      borderRadius="lg"
+      borderRadius="10px"
       overflow="hidden"
+      paddingX="20px"
+      paddingY="10px"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
     >
-      {/* <Image src={"/taco03_thumbnail_16×9.jpg"} alt={""} /> */}
-      <Box paddingX="6" paddingY="3">
+      <Box>
         <Box display="flex" justifyContent="space-between">
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            noOfLines={1}
-          >
-            {property.title}
+          <Box mt="1" as="h4" lineHeight="tight" noOfLines={2}>
+            {props.title}
           </Box>
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            noOfLines={1}
-          >
-            {property.userName}
+          <Box mt="1" as="h4" lineHeight="tight" noOfLines={1}>
+            {props.userName}
           </Box>
         </Box>
         <Box display="flex" justifyContent="end">
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            noOfLines={1}
-          >
-            {property.communityName}
+          <Box mt="1" as="h4" lineHeight="tight" noOfLines={1}>
+            {props.communityName}
           </Box>
+        </Box>
+      </Box>
+      <Box>
+        <Box display="flex" justifyContent="end">
+          <Box>{props.date}</Box>
         </Box>
       </Box>
     </Box>
