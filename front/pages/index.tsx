@@ -1,23 +1,13 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import EventCard from "../components/molecules/EventCard";
-import { css } from "@emotion/css";
-import BaseLayout from "../components/templates/BaseLayout";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const Home: NextPage = () => {
-  return (
-    <BaseLayout>
-      {Array(1)
-        .fill("")
-        .map((_, index) => (
-          <div key={index}>
-            <EventCard />
-          </div>
-        ))}
-    </BaseLayout>
-  );
+const IndexPage: NextPage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/home");
+  }, []);
+  return <></>;
 };
 
-export default Home;
+export default IndexPage;
