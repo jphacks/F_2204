@@ -135,14 +135,21 @@ communities ||--o{users_communities:""
 3. backedn/ `make shell`でdjangoのshellに入る
 4. 下をコピーしてシェルに貼り付けて実行
 ```
-from rest_api.models import User, Community
-from rest_api.serializer  import UserSerializer, CommunitySerializer
+from rest_api.models import User, Community,CommunityMembers
+from rest_api.serializer  import UserSerializer, CommunitySerializer,CommunityMembersSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+
 user = User(password="password", email="test@example.com", user_name="test_user", address="test address")
 community_1 = Community(community_name="test community 1")
 community_1.save()
 user.save()
+user_1_community_1 = CommunityMembers(user_id=user, community_id=community_1)
+user_1_community_1.save()
+u_c_serializer_1 = CommunityMembersSerializer(user_1_community_1)
+u_c_serializer_1.data
+
+
 user2 = User(password="password2", email="test2@example.com", user_name="test_user_2", address="test address")
 user2.save()
 userserializer2 = UserSerializer(user2)
