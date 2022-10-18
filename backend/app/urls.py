@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/users/<int:pk>/', UserDetail.as_view()),
     path('api/communities/', CommunityList.as_view()),
     path('api/communities/<int:pk>/', CommunityDetail.as_view()),
-    path('api/communities/<int:pk>/users', CommunityMembersAPIView.as_view()),
+    path('api/communities/<int:pk>/users/', CommunityMembersAPIView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
