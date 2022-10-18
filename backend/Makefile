@@ -34,3 +34,6 @@ check-user:
 check-community:
 	docker-compose exec backend http http://localhost:8000/api/communities/
 	docker-compose exec backend http http://localhost:8000/api/communities/1/
+
+check-articles:
+	docker-compose exec backend http  http://localhost:8000/api/articles/
