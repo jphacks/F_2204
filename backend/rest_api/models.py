@@ -6,7 +6,7 @@ from django.utils import timezone
 class User(models.Model):
     user_id =  models.AutoField(verbose_name="ユーザID",primary_key=True)
     password = models.CharField(max_length=255, default="")
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(max_length=255, default="")
     user_name = models.CharField(verbose_name="ユーザ名",max_length=255)
     address = models.CharField(verbose_name="住所",max_length=255)
     created_at = models.DateTimeField(verbose_name='作成日時',auto_now_add=True) 
@@ -28,8 +28,8 @@ class Article(models.Model):
     uri = models.URLField(verbose_name="URI", max_length=300, null=True)
     article_name = models.CharField(verbose_name="投稿タイトル",max_length=255)
     article_content = models.TextField(verbose_name="投稿内容",max_length=255)
-    meeting_time = models.DateTimeField(verbose_name="開催日時", default=timezone.now())
-    created_at = models.DateTimeField(verbose_name="投稿作成日時", default=timezone.now())
+    meeting_time = models.DateTimeField(verbose_name="開催日時", default=timezone.now)
+    created_at = models.DateTimeField(verbose_name="投稿作成日時", default=timezone.now)
 
 class Article_Community(models.Model):
     article_id = models.ForeignKey(Article, on_delete=models.CASCADE)

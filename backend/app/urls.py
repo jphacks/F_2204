@@ -16,14 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from rest_api.views import UserViewSet
-
-defaultRouter = routers.DefaultRouter()
+from rest_api.views import UserList, UserDetail
+from rest_api.views import CommunityDetail, CommunityList
+from rest_framework.urlpatterns import format_suffix_patterns
 
 # api一覧
-defaultRouter.register('users',UserViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include(defaultRouter.urls)),
+    path('api/users/', UserList.as_view()),
+    path('api/users/<int:pk>/', UserDetail.as_view()),
+    path('api/communities/', CommunityList.as_view()),
+    path('api/communities/<int:pk>/', CommunityDetail.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
