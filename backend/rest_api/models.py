@@ -2,6 +2,8 @@ from tabnanny import verbose
 from unicodedata import category, name
 from django.db import models
 from django.utils import timezone
+
+
 # ユーザ情報
 class User(models.Model):
     user_id =  models.AutoField(verbose_name="ユーザID",primary_key=True)
@@ -21,6 +23,7 @@ class Community(models.Model):
         through="CommunityMembers"
     )
 
+
 class CommunityMembers(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(
@@ -33,12 +36,6 @@ class CommunityMembers(models.Model):
         related_name="users_communities",
         on_delete=models.CASCADE
     )
-
-# connect users and community table
-class User_Community(models.Model):
-    member_id = models.AutoField(verbose_name="Member ID",primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    community = models.ForeignKey(Community, on_delete=models.CASCADE)
 
 class Article(models.Model):
     article_id = models.AutoField(verbose_name="ID",primary_key=True)
