@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { css } from "@emotion/css";
 import React, { FC, ReactNode } from "react";
+import Footer from "../molecules/Footer";
 
 type Props = {
   children: ReactNode;
@@ -20,7 +21,9 @@ const BaseLayout: FC<Props> = (props) => {
     >
       <header></header>
       <main>{props.children}</main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
