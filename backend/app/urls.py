@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_api.views import ArticleList
 from rest_api.views import CommunityMembersAPIView
 from rest_api.views import UserList, UserDetail
 from rest_api.views import CommunityDetail, CommunityList
@@ -29,6 +30,7 @@ urlpatterns = [
     path('api/communities/', CommunityList.as_view()),
     path('api/communities/<int:pk>/', CommunityDetail.as_view()),
     path('api/communities/<int:pk>/users/', CommunityMembersAPIView.as_view()),
+    path('api/articles/', ArticleList.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
