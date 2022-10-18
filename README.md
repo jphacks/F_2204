@@ -132,7 +132,7 @@ communities ||--o{users_communities:""
 ### shellでAPI試す流れ
 1. docker起動`make dc/up-build`
 2. backend/で`make migration`と`make migrate`
-3. `make shell`でdjangoのshellに入る
+3. backedn/ `make shell`でdjangoのshellに入る
 4. 下をコピーしてシェルに貼り付けて実行
 ```
 from rest_api.models import User, Community
@@ -152,4 +152,4 @@ userserializer2.data
 community_sel = CommunitySerializer(community_1)
 community_sel.data
 ```
-5. `make check-user`でユーザ情報`make check-community`コミュニティ確認
+5. backend/ `make check-user`でユーザ情報`make check-community`コミュニティ確認
