@@ -5,10 +5,6 @@
 install:
 	pip install -r requirements.txt
 
-# 仮想環境起動ずみ、docker起動ずみ
-user-test-list-one:
-	http http://localhost:8000/api/users/ 
-	http http://localhost:8000/api/users/1/
 
 # docker内で実行
 migrate:
@@ -29,14 +25,16 @@ create-superuser:
 ls-docker-db:
 	docker-compose exec db psql --username=pos_db_user --dbname=sokuseki_db
 
-shell-create-user:
+shell-create-user-community:
 	make shell
 
-	from rest_api.models import User
-	from rest_api.serializer  import UserSerializer
+	from rest_api.models import User, Community
+	from rest_api.serializer  import UserSerializer, CommunitySerializer
 	from rest_framework.renderers import JSONRenderer
 	from rest_framework.parsers import JSONParser
 	user = User(password="password", email="test@example.com", user_name="test_user", address="test address")
+	community_1 = Community(community_name="test community 1")
+	community_1.save()
 	user.save()
 	userserializer2 = UserSerializer(user2)
 	userserializer2.data
@@ -44,3 +42,15 @@ shell-create-user:
 	user2.save()
 	userserializer2 = UserSerializer(user2)
 	userserializer2.data
+	community_sel = CommunitySerializer(community_1)
+	community_sel.data
+
+
+# 条件：仮想環境起動ずみ、docker起動ずみ
+check-user:
+	http http://localhost:8000/api/users/ 
+	http http://localhost:8000/api/users/1/
+
+check-community:
+	http http://localhost:8000/api/communities/
+	http http://localhost:8000/api/communities/1/
