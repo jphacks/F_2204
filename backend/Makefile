@@ -28,9 +28,9 @@ ls-docker-db:
 
 # 条件：仮想環境起動ずみ、docker起動ずみ
 check-user:
-	http http://localhost:8000/api/users/ 
-	http http://localhost:8000/api/users/1/
+	docker-compose exec backend http http://localhost:8000/api/users/ 
+	docker-compose exec backend http http://localhost:8000/api/users/1/
 
 check-community:
-	http http://localhost:8000/api/communities/
-	http http://localhost:8000/api/communities/1/
+	docker-compose exec backend http http://localhost:8000/api/communities/
+	docker-compose exec backend http http://localhost:8000/api/communities/1/
