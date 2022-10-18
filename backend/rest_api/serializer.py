@@ -52,10 +52,12 @@ class ArticleSerializer(serializers.ModelSerializer):
     article_content = serializers.CharField(required=False, allow_blank=True, max_length=255)
     meeting_time = serializers.DateTimeField(required=False,default=timezone.now())
     created_at = serializers.DateTimeField(required=False,default=timezone.now())
-    
-    def create(self,validated_data):
-        return Article.objects.create(**validated_data)
 
+    class Meta:
+        model = Article
+        db_table=DB_NAME
+        fields = "__all__"
+    
 
 class CommunitySerializer(serializers.ModelSerializer):
     community_id = serializers.IntegerField(read_only=True)
