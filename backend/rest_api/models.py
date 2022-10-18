@@ -16,6 +16,23 @@ class User(models.Model):
 class Community(models.Model):
     community_id = models.AutoField(verbose_name="Community ID",primary_key=True)
     community_name = models.CharField(verbose_name="Community Name",max_length=255)
+    users = models.ManyToManyField(
+        User,
+        through="CommunityMembers"
+    )
+
+class CommunityMembers(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(
+        User,
+        related_name="users_communities",
+        on_delete=models.CASCADE
+    )
+    community_id = models.ForeignKey(
+        Community,
+        related_name="users_communities",
+        on_delete=models.CASCADE
+    )
 
 # connect users and community table
 class User_Community(models.Model):
