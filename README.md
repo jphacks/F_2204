@@ -127,3 +127,29 @@ communities ||--o{users_communities:""
 - /communities GET コミュニティ一覧
 - /communities/:id    GET コミュニティを取得
 - /communities/:id/users GET 参加する人(数)
+
+
+### shellでAPI試す流れ
+1. docker起動`make dc/up-build`
+2. backend/で`make migration`と`make migrate`
+3. `make shell`でdjangoのshellに入る
+4. 下をコピーしてシェルに貼り付けて実行
+```
+from rest_api.models import User, Community
+from rest_api.serializer  import UserSerializer, CommunitySerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+user = User(password="password", email="test@example.com", user_name="test_user", address="test address")
+community_1 = Community(community_name="test community 1")
+community_1.save()
+user.save()
+userserializer2 = UserSerializer(user2)
+userserializer2.data
+user2 = User(password="password2", email="test2@example.com", user_name="test_user_2", address="test address")
+user2.save()
+userserializer2 = UserSerializer(user2)
+userserializer2.data
+community_sel = CommunitySerializer(community_1)
+community_sel.data
+```
+5. `make check-user`でユーザ情報`make check-community`コミュニティ確認
