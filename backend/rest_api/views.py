@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Community, User
-from .serializer import CommunityMembersSerializer, CommunitySerializer, UserSerializer
+from .serializer import CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
@@ -15,10 +15,9 @@ class CommunityMembersAPIView(APIView):
 
     def get(self, request, pk, *args, **kwargs):
         communities = get_object_or_404(Community, pk=pk)
-        serializer = CommunityMembersSerializer(communities)
+        serializer = CommunityUsersSerializer(communities)
         return Response(
             serializer.data,
-            status=status.HTTP_200_OK
         )
 
 
