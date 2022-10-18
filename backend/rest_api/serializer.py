@@ -1,14 +1,16 @@
-from dataclasses import fields
+from dataclasses import field
 from pyexpat import model
 from rest_framework import serializers
-from .models import User, Article
+from .models import User, Article, Community
 from django.utils import timezone
+
+DB_NAME="sokuseki_db"
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("user_id", "user_name", "address")
-        db_table="sokuseki_db"
+        db_table=DB_NAME
 
 
 
@@ -22,3 +24,13 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     def create(self,validated_data):
         return Article.objects.create(**validated_data)
+
+
+class CommunitySerializer(serializers.ModelSerializer):
+    community_id = serializers.IntegerField(read_only=True)
+    community_name = serializers.CharField(required=False,max_length=255)
+
+    class Meta:
+        model = Community
+        db_table=DB_NAME
+        fields = ("community_id", "community_name")
