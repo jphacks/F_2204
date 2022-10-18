@@ -12,33 +12,37 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
         db_table=DB_NAME
 
-class CommunityUsersSerializer(serializers.ModelSerializer):
+
+class CommunityMembersSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
-    community = serializers.SerializerMethodField()
 
     def get_user(self, obj):
         # user_idが一致する行を取得
         user_obj = UserSerializer(instance=obj.user_id)
         return user_obj.data
     
+    
     class Meta:
         model = CommunityMembers
-        fields="__all__"
+        fields='__all__'
 
-class CommunityMembersSerializer(serializers.ModelSerializer):
+
+class CommunityUsersSerializer(serializers.ModelSerializer):
     users = serializers.SerializerMethodField()
 
-    def get_user(self, obj):
+    def get_users(self, obj):
         communities = Community.objects.get(pk=obj.pk)
-        serializers = CommunityUsersSerializer(
+        serializers = CommunityMembersSerializer(
             communities.users_communities.all(), 
             many=True
         )
         return serializers.data
-    
+
+
     class Meta:
         model = Community
-        fields='__all__'
+        fields="__all__"
+
 
 
 class ArticleSerializer(serializers.ModelSerializer):
