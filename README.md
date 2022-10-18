@@ -143,8 +143,6 @@ user = User(password="password", email="test@example.com", user_name="test_user"
 community_1 = Community(community_name="test community 1")
 community_1.save()
 user.save()
-userserializer2 = UserSerializer(user2)
-userserializer2.data
 user2 = User(password="password2", email="test2@example.com", user_name="test_user_2", address="test address")
 user2.save()
 userserializer2 = UserSerializer(user2)
