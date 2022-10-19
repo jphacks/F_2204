@@ -6,6 +6,7 @@ type Props = {
   userName: string;
   communityName: string;
   date: string;
+  onClick?: () => void;
 };
 
 const EventCard: FC<Props> = (props) => {
@@ -21,6 +22,7 @@ const EventCard: FC<Props> = (props) => {
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
+      onClick={props.onClick}
     >
       <Box>
         <Box display="flex" justifyContent="space-between">

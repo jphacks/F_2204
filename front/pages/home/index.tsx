@@ -1,12 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import EventCard from "../../components/molecules/EventCard";
 import BaseLayout from "../../components/templates/BaseLayout";
 
 const HomePage: NextPage = () => {
+  const router = useRouter();
   return (
     <BaseLayout>
-      {Array(3)
+      {Array(10)
         .fill("")
         .map((_, index) => (
           <Box key={index} marginBottom="20px">
@@ -15,6 +17,7 @@ const HomePage: NextPage = () => {
               userName="ユーザー名"
               communityName="コミュニティ名"
               date="22/10/17"
+              onClick={() => router.push(`/details/${index + 1}`)}
             />
           </Box>
         ))}
