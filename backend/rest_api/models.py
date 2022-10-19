@@ -14,6 +14,9 @@ class User(models.Model):
     address = models.CharField(verbose_name="住所",max_length=255)
     created_at = models.DateTimeField(verbose_name='作成日時',auto_now_add=True) 
 
+    def __str__(self):
+        return "user_id: {}".format(self.user_id)
+
 
 # Community Table
 class Community(models.Model):
