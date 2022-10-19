@@ -14,14 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
-from rest_api.views import UserArticleDetail
-from rest_api.views import UserArticleList
+from django.urls import path
+from rest_api.views import UserArticleList,UserArticleDetail,UserList, UserDetail
 from rest_api.views import ArticleList
-from rest_api.views import CommunityMembersAPIView
-from rest_api.views import UserList, UserDetail
-from rest_api.views import CommunityDetail, CommunityList
+from rest_api.views import CommunityDetail, CommunityList,CommunityMembersAPIView
 from rest_framework.urlpatterns import format_suffix_patterns
 
 # api一覧
