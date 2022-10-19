@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Article, Community, User
-from .serializer import ArticleSerializer, CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserSerializer
+from .serializer import ArticleSerializer, CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserArticlesSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
@@ -8,6 +8,21 @@ from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
+
+class UserArticleList(APIView):
+    def get_object(self, pk):
+        try:
+            user =  User.objects.get(pk=pk)
+            articles = user.article_set.all()
+            return articles
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = ArticleSerializer(snippet,many=True)
+        return Response(serializer.data)
+
 
 class CommunityMembersAPIView(APIView):
     authentication_classes = []
