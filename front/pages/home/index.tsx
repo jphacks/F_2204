@@ -17,7 +17,7 @@ const HomePage: NextPage = () => {
               userName="ユーザー名"
               communityName="コミュニティ名"
               date="22/10/17"
-              onClick={() => router.push(`/details/${index + 1}`)}
+              onClick={() => router.push(`/detail/${index + 1}`)}
             />
           </Box>
         ))}

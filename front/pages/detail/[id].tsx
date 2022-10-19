@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import BaseLayout from "../../components/templates/BaseLayout";
 
-const Home: NextPage = () => {
+const DetailPage: NextPage = () => {
   return <BaseLayout>/details</BaseLayout>;
 };
 
-export default Home;
+export default DetailPage;
