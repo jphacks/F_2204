@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Article, Community, User
-from .serializer import ArticleSerializer, CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserArticlesSerializer, UserSerializer
+from .serializer import ArticleSerializer, CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
@@ -22,6 +22,22 @@ class UserArticleList(APIView):
         snippet = self.get_object(pk)
         serializer = ArticleSerializer(snippet,many=True)
         return Response(serializer.data)
+
+class UserArticleDetail(APIView):
+    def get_object(self, user_id, article_id):
+        try:
+            user = User.objects.get(pk=user_id)
+            article = user.article_set.get(pk=article_id)
+            return article
+        except User.DoesNotExist:
+            return Http404
+
+    def get(self, request, user_id, article_id, format=None):
+        snippet = self.get_object(user_id, article_id)
+        serializer = ArticleSerializer(snippet)
+        return Response(serializer.data)
+    
+
 
 
 class CommunityMembersAPIView(APIView):
