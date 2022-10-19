@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_api.views import UserArticleList
 from rest_api.views import ArticleList
 from rest_api.views import CommunityMembersAPIView
 from rest_api.views import UserList, UserDetail
@@ -27,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', UserList.as_view()),
     path('api/users/<int:pk>/', UserDetail.as_view()),
+    path('api/users/<int:pk>/articles/', UserArticleList.as_view()),
     path('api/communities/', CommunityList.as_view()),
     path('api/communities/<int:pk>/', CommunityDetail.as_view()),
     path('api/communities/<int:pk>/users/', CommunityMembersAPIView.as_view()),
