@@ -118,15 +118,6 @@ communities ||--o{users_communities:""
 ```
 
 
-## API 
-- /users POST ユーザ名を作成する
-- /users/:id       GET ユーザ情報を取得
-- /users/:id/articles GET ユーザが投稿した料理一覧
-- /users/:id/articles/:article_id GET ユーザが投稿した料理
-- /communities POST コミュニティ作成
-- /communities GET コミュニティ一覧
-- /communities/:id    GET コミュニティを取得
-- /communities/:id/users GET 参加する人(数)
 
 
 ### shellでAPI試す流れ
