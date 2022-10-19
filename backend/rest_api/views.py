@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Article, Community, User
-from .serializer import ArticleSerializer, CommunityMembersSerializer, CommunitySerializer, CommunityUsersSerializer, UserSerializer
+from .serializer import ArticleSerializer, CommunitySerializer, CommunityUsersSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
