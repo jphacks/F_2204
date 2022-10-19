@@ -1,9 +1,11 @@
 import { Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 
 type Props = {};
 
 const Footer: FC<Props> = (props) => {
+  const router = useRouter();
   return (
     <Box
       w="full"
@@ -20,8 +22,12 @@ const Footer: FC<Props> = (props) => {
       backgroundColor="gray.200"
     >
       <Box w="full"></Box>
-      <Box w="full">ホーム</Box>
-      <Box w="full">コミュニティ</Box>
+      <Box w="full" onClick={() => router.push("/home")}>
+        ホーム
+      </Box>
+      <Box w="full" onClick={() => router.push("/community")}>
+        コミュニティ
+      </Box>
     </Box>
   );
 };
