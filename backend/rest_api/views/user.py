@@ -1,11 +1,10 @@
-from rest_framework import viewsets
-from .models import Community, User
-from .serializer import CommunitySerializer, UserSerializer
+from ..models import Article, Community, User
+from ..serializer import ArticleSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
 from rest_framework.response import Response
-
+from rest_framework.views import APIView
 
 
 class UserList(APIView):
@@ -48,42 +47,31 @@ class UserDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
-class CommunityList(APIView):
-    def get(self,request, format=None):
-        communities = Community.objects.all()
-        selializer = CommunitySerializer(communities, many=True)
-        return Response(selializer.data)
-    
-    def post(self, request, format=None):
-        serializer = CommunitySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class CommunityDetail(APIView):
+class UserArticleList(APIView):
     def get_object(self, pk):
         try:
-            return Community.objects.get(pk=pk)
-        except Community.DoesNotExist:
+            user =  User.objects.get(pk=pk)
+            articles = user.article_set.all()
+            return articles
+        except User.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = CommunitySerializer(snippet)
+        serializer = ArticleSerializer(snippet,many=True)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = CommunitySerializer(snippet, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class UserArticleDetail(APIView):
+    def get_object(self, user_id, article_id):
+        try:
+            user = User.objects.get(pk=user_id)
+            article = user.article_set.get(pk=article_id)
+            return article
+        except User.DoesNotExist:
+            return Http404
 
-    def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def get(self, request, user_id, article_id, format=None):
+        snippet = self.get_object(user_id, article_id)
+        serializer = ArticleSerializer(snippet)
+        return Response(serializer.data)
+    

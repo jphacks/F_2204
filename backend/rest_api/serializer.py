@@ -1,7 +1,7 @@
-from dataclasses import field
+from dataclasses import field, fields
 from pyexpat import model
 from rest_framework import serializers
-from .models import User, Article, Community
+from .models import CommunityMembers, User, Article, Community
 from django.utils import timezone
 
 DB_NAME="sokuseki_db"
@@ -9,8 +9,39 @@ DB_NAME="sokuseki_db"
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("user_id", "user_name", "address")
+        fields = '__all__'
         db_table=DB_NAME
+
+
+class CommunityMembersSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+
+    def get_user(self, obj):
+        # user_idが一致する行を取得
+        user_obj = UserSerializer(instance=obj.user_id)
+        return user_obj.data
+    
+    
+    class Meta:
+        model = CommunityMembers
+        fields='__all__'
+
+
+class CommunityUsersSerializer(serializers.ModelSerializer):
+    users = serializers.SerializerMethodField()
+
+    def get_users(self, obj):
+        communities = Community.objects.get(pk=obj.pk)
+        serializers = CommunityMembersSerializer(
+            communities.users_communities.all(), 
+            many=True
+        )
+        return serializers.data
+
+
+    class Meta:
+        model = Community
+        fields="__all__"
 
 
 
@@ -21,10 +52,12 @@ class ArticleSerializer(serializers.ModelSerializer):
     article_content = serializers.CharField(required=False, allow_blank=True, max_length=255)
     meeting_time = serializers.DateTimeField(required=False,default=timezone.now())
     created_at = serializers.DateTimeField(required=False,default=timezone.now())
-    
-    def create(self,validated_data):
-        return Article.objects.create(**validated_data)
 
+    class Meta:
+        model = Article
+        db_table=DB_NAME
+        fields = "__all__"
+    
 
 class CommunitySerializer(serializers.ModelSerializer):
     community_id = serializers.IntegerField(read_only=True)
