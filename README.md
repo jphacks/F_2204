@@ -136,12 +136,20 @@ communities ||--o{users_communities:""
 4. 下をコピーしてシェルに貼り付けて実行
 ```
 from rest_api.models import User, Community,CommunityMembers,Article
-from rest_api.serializer  import UserSerializer, CommunitySerializer,CommunityMembersSerializer,ArticleSerializer
+from rest_api.serializer  import UserSerializer, CommunitySerializer,CommunityMembersSerializer,ArticleSerializer,UserArticlesSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-article1 = Article(uri="http://...", article_name="test_article", article_content="article content test", meeting_time="2022-10-10")
+user_article_1 = User(password="password", email="test@example.com", user_name="test_user_article_1", address="test address")
+user_article_1.save()
+
+article1 = Article(uri="http://...",user=user_article_1, article_name="test_article", article_content="article content test", meeting_time="2022-10-10")
+article2 = Article(uri="http://...",user=user_article_1, article_name="test_article", article_content="article content test", meeting_time="2022-10-10")
 article1.save()
+article2.save()
+user_article = UserArticlesSerializer(article1)
+user_article.data
+
 serializer = ArticleSerializer(article1)
 serializer.data
 
