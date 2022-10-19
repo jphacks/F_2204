@@ -1,3 +1,4 @@
+from email.policy import default
 from tabnanny import verbose
 from unicodedata import category, name
 from django.db import models
@@ -38,7 +39,8 @@ class CommunityMembers(models.Model):
     )
 
 class Article(models.Model):
-    article_id = models.AutoField(verbose_name="ID",primary_key=True)
+    article_id = models.AutoField(verbose_name="記事のID",primary_key=True)
+    user   = models.ForeignKey(User,verbose_name="記事を投稿するユーザID", on_delete=models.CASCADE, default=None)
     uri = models.URLField(verbose_name="URI", max_length=300, null=True)
     article_name = models.CharField(verbose_name="投稿タイトル",max_length=255)
     article_content = models.TextField(verbose_name="投稿内容",max_length=255)
