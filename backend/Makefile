@@ -43,3 +43,6 @@ check-user-articles:
 
 check-user-article:
 	docker-compose exec backend http http://localhost:8000/api/users/7/articles/8/
+
+check-community-article:
+	docker-compose exec backend http http://localhost:8000/api/communities/$(com_id)/articles/$(article_id)/
