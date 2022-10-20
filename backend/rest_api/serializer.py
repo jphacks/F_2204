@@ -1,19 +1,15 @@
 from dataclasses import field, fields
 from pyexpat import model
 from rest_framework import serializers
-<<<<<<< HEAD
 from .models import User, Community, User_Community, Article, Article_Community
-=======
 from .models import CommunityMembers, User, Article, Community
 from django.utils import timezone
->>>>>>> master
 
 DB_NAME="sokuseki_db"
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ("user_id", "user_name", "address")
         
 class CommunitySerializer(serializers.ModelSerializer):
@@ -35,7 +31,6 @@ class Article_CommunitySerialzer(serializers.ModelSerializer):
     class Meta:
         model = Article_Community
         fields = ('article_id', 'community_id')
-=======
         fields = '__all__'
         db_table=DB_NAME
 
@@ -94,4 +89,3 @@ class CommunitySerializer(serializers.ModelSerializer):
         model = Community
         db_table=DB_NAME
         fields = ("community_id", "community_name")
->>>>>>> master
