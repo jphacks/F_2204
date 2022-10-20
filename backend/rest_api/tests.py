@@ -139,9 +139,41 @@ class ArticleTest(TestCase):
         )
         
         just_before_article = Article.objects.all()[0]
-        TestCase().assertEqual(just_before_article.article_id, 1)
+        TestCase().assertEqual(just_before_article.article_id, 2)
         TestCase().assertEqual(just_before_article.user.user_name, 'Kan')
         TestCase().assertEqual(just_before_article.article_name, 'event1')
         TestCase().assertEqual(just_before_article.article_content, 'イベント1')
         
     
+class ArticleCommunityTest(TestCase):
+    def test_save_and_recieve_articleCommunity(self):
+        user1 = User.objects.create(
+          user_id = '01',
+          password="01",
+          email="01@gmail.com",
+          user_name="Kan",
+          address="Hukuoka",
+        )
+        article1 = Article.objects.create(
+          user = user1,
+          uri = 'https://aaaaaa',
+          article_name = 'event1',
+          article_content='イベント1',
+        )
+        community1 = Community.objects.create(
+          community_id = '1',
+          community_name = 'test1',
+        )
+        
+        article_community = Article_Community.objects.create(
+          article_id = article1,
+          community_id = community1
+        )
+        
+        saved_article_community = Article_Community.objects.all()[0]
+        
+        TestCase().assertEqual(saved_article_community.article_id.article_id, 1)
+        TestCase().assertEqual(saved_article_community.community_id.community_id, 1)
+        # TestCase().assertEqual(saved_article_community.community_id, 1)
+        
+        
