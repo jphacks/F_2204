@@ -1,4 +1,5 @@
 import json
+from rest_api.views.community import CommunityArticleDetailAPIView
 from rest_api.models import CommunityArticlesOnly
 from rest_api.models import User,Community,Article
 from rest_api.models import User, Community,CommunityMembers,Article
@@ -21,9 +22,8 @@ def test_community_articles():
     
 
     # article1 = Article(uri="http://...",user=user, article_name="test_article", article_content="article content test", meeting_time="2022-10-10")
-    article1 = Article.objects.get(article_id=1)
+    article1 = Article.objects.get(article_id=2)
     # article2 = Article.objects.create(article_id=2)
-    article1.save()
     # article2.save()
     print(article1)
     community_article = CommunityArticlesOnly(community_id=community1, article_id=article1)
@@ -32,3 +32,6 @@ def test_community_articles():
     # community_article2.save()
     c = CommunityArticlesSerializer(community1)
     print(json.dumps(c.data ))
+
+    com_article = CommunityArticleDetailAPIView(community1, article1)
+    print(json.dumps(com_article.data))
