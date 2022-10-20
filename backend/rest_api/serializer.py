@@ -67,6 +67,7 @@ class CommunityUsersSerializer(serializers.ModelSerializer):
             many=True
         )
         return serializers.data
+    
 
 
     class Meta:
