@@ -44,12 +44,24 @@ class CommunityMembers(models.Model):
 class Article(models.Model):
     article_id = models.AutoField(verbose_name="記事のID",primary_key=True)
     user   = models.ForeignKey(User,verbose_name="記事を投稿するユーザID", on_delete=models.CASCADE, default=None)
+    communities = models.ManyToManyField(
+        Community,
+        through="CommunityArticlesOnly"
+    )
+
     uri = models.URLField(verbose_name="URI", max_length=300, null=True)
     article_name = models.CharField(verbose_name="投稿タイトル",max_length=255)
     article_content = models.TextField(verbose_name="投稿内容",max_length=255)
     meeting_time = models.DateTimeField(verbose_name="開催日時", default=timezone.now)
     created_at = models.DateTimeField(verbose_name="投稿作成日時", default=timezone.now)
 
-class Article_Community(models.Model):
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE)
-    community_id = models.ForeignKey(Community, on_delete=models.CASCADE)
+class CommunityArticlesOnly(models.Model):
+    article_id = models.ForeignKey(
+        Article, 
+        related_name="communities_articles",
+        on_delete=models.CASCADE
+        )
+    community_id = models.ForeignKey(
+        Community,
+        related_name="communities_articles",
+        on_delete=models.CASCADE)
