@@ -22,7 +22,7 @@ const Footer: FC<Props> = (props) => {
       backgroundColor="gray.200"
     >
       <Box w="full"></Box>
-      <Box w="full" onClick={() => router.push("/home")}>
+      <Box w="full" onClick={() => router.push("/article")}>
         ホーム
       </Box>
       <Box w="full" onClick={() => router.push("/community")}>

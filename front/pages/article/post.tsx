@@ -48,7 +48,7 @@ const PostPage: NextPage = () => {
         resize="none"
         overflow="scroll"
       />
-      <Button width="100%" height="50px" marginTop="10px">
+      <Button width="100%" height="50px" marginTop="20px">
         作成する
       </Button>
     </BaseLayout>
