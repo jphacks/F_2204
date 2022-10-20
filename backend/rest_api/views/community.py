@@ -22,6 +22,15 @@ class CommunityArticleDetailAPIView(APIView):
         snippet = self.get_object(community_id, article_id)
         serializer = ArticleSerializer(snippet)
         return Response(serializer.data)
+    
+    # 投稿にユーザを追加するメソッド
+    def post(self, request, format=None):
+        serializer = CommunityArticlesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class CommunityArticlesAPIView(APIView):
