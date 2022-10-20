@@ -114,4 +114,34 @@ class CommunityTest(TestCase):
         community1.delete()
         community2.delete()
                
+
+class ArticleTest(TestCase):
+    def test_save_and_recieve_article(self):
+        user1 = User.objects.create(
+          user_id = '01',
+          password="01",
+          email="01@gmail.com",
+          user_name="Kan",
+          address="Hukuoka",
+        )
+        article1 = Article.objects.create(
+          user = user1,
+          uri = 'https://aaaaaa',
+          article_name = 'event1',
+          article_content='イベント1',
+        )
+        
+        article2 = Article(
+          user = user1,
+          uri = 'https://aaaaaa',
+          article_name = 'event2',
+          article_content='イベント2',
+        )
+        
+        just_before_article = Article.objects.all()[0]
+        TestCase().assertEqual(just_before_article.article_id, 1)
+        TestCase().assertEqual(just_before_article.user.user_name, 'Kan')
+        TestCase().assertEqual(just_before_article.article_name, 'event1')
+        TestCase().assertEqual(just_before_article.article_content, 'イベント1')
+        
     
