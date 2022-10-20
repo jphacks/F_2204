@@ -29,7 +29,7 @@ class Community(models.Model):
 
 
 class CommunityMembers(models.Model):
-    id = models.AutoField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(
         User,
         related_name="users_communities",
@@ -58,10 +58,10 @@ class Article(models.Model):
 class CommunityArticlesOnly(models.Model):
     article_id = models.ForeignKey(
         Article, 
-        related_name="communities_articles",
+        related_name="articles_communities",
         on_delete=models.CASCADE
         )
     community_id = models.ForeignKey(
         Community,
-        related_name="communities_articles",
+        related_name="articles_communities",
         on_delete=models.CASCADE)
