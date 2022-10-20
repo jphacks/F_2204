@@ -6,6 +6,7 @@ import Header from "../molecules/Header";
 
 type Props = {
   children: ReactNode;
+  hideSidebar?: boolean;
 };
 
 const BaseLayout: FC<Props> = (props) => {
@@ -26,15 +27,14 @@ const BaseLayout: FC<Props> = (props) => {
       <Header />
       <main
         className={css`
-          padding-top: 70px;
-          padding-bottom: 60px;
+          padding-top: 50px;
+          padding-bottom: ${!props.hideSidebar ? "30px" : "0"};
         `}
       >
         {props.children}
       </main>
-      <footer>
-        <Footer />
-      </footer>
+
+      {!props.hideSidebar && <Footer />}
     </div>
   );
 };
