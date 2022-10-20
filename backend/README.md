@@ -7,3 +7,10 @@ DRF(Django REST Framework)におけるUnit Testについて記載する。
 4. ```python manage.py migrate``` にてマイグレーションを行う。
 5. ```python manage.py test``` にて/backend/rest_api/tests.py に記載されているテストが走る。
 6. OK が出力されればテストが通っているので問題なし。
+
+
+
+# ローカル開発のマイグレーションがうまく効かない時の対応法
+- テーブル名の変更が効いていない可能性がある。
+- マイグレーションファイルを消しても、テーブルが消えるわけではない
+- Dockerのボリュームを消してあげないとだめ
