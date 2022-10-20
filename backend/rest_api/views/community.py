@@ -1,5 +1,6 @@
 from ..models import Community
-from ..serializer import  CommunitySerializer, CommunityUsersSerializer
+from ..serializer import  ArticleSerializer, CommunitySerializer, CommunityUsersSerializer 
+from ..serializer import  CommunityArticlesSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
@@ -8,6 +9,31 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 
+class CommunityArticleDetailAPIView(APIView):
+    def get_object(self, community_id, article_id):
+        try:
+            community = Community.objects.get(pk=community_id)
+            article = community.article_set.get(pk=article_id)
+            return article
+        except Community.DoesNotExist:
+            return Http404
+
+    def get(self, request, community_id, article_id, format=None):
+        snippet = self.get_object(community_id, article_id)
+        serializer = ArticleSerializer(snippet)
+        return Response(serializer.data)
+
+
+class CommunityArticlesAPIView(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny, ]
+
+    def get(self, request, pk, *args, **kwargs):
+        community = get_object_or_404(Community, pk=pk)
+        serializer = CommunityArticlesSerializer(community)
+        return Response(
+            serializer.data,
+        )
 
 
 class CommunityMembersAPIView(APIView):

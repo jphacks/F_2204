@@ -1,8 +1,9 @@
 from dataclasses import field, fields
 from pyexpat import model
 from rest_framework import serializers
+from .models import CommunityArticlesOnly
 from .models import CommunityMembers, User, Article, Community
-from django.utils import timezone
+from django.utils import timezone 
 
 DB_NAME="sokuseki_db"
 
@@ -12,7 +13,19 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
         db_table=DB_NAME
 
+class CommunityArticle(serializers.ModelSerializer):
+    article = serializers.SerializerMethodField()
 
+    def get_article(self, obj):
+        article_obj = ArticleSerializer(instance=obj.article_id)
+        return article_obj.data
+    
+    class Meta:
+        model = CommunityArticlesOnly
+        fields="__all__"
+
+
+# コミュニティのユーザを取得
 class CommunityMembersSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
 
@@ -25,6 +38,23 @@ class CommunityMembersSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommunityMembers
         fields='__all__'
+
+
+
+class CommunityArticlesSerializer(serializers.ModelSerializer):
+    articles = serializers.SerializerMethodField()
+
+    def get_articles(self, obj):
+        community = Community.objects.get(pk=obj.pk)
+        serializer = CommunityArticle(
+            community.articles_communities.all(),
+            many=True
+        )
+        return serializer.data
+    
+    class Meta:
+        model = Community
+        fields="__all__"
 
 
 class CommunityUsersSerializer(serializers.ModelSerializer):
