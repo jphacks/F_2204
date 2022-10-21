@@ -1,9 +1,8 @@
 import { Box, Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/react";
-import { css } from "@emotion/css";
 import type { NextPage } from "next";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import BottomFloatingButton from "../../components/atoms/BottomFloatingButton";
 import BaseLayout from "../../components/templates/BaseLayout";
 
