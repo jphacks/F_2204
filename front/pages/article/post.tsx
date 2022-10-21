@@ -1,12 +1,13 @@
 import { Box, Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/react";
-import { css } from "@emotion/css";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import BottomFloatingButton from "../../components/atoms/BottomFloatingButton";
 import BaseLayout from "../../components/templates/BaseLayout";
 
 const PostPage: NextPage = () => {
+  const router = useRouter();
   return (
     <BaseLayout>
       <Box
@@ -56,8 +57,8 @@ const PostPage: NextPage = () => {
         />
         <BottomFloatingButton
           text="作成する"
-          bottomPos="65px"
-          onClick={() => console.log("作成")}
+          bottom="65px"
+          onClick={() => router.push("/article")}
         />
       </Box>
     </BaseLayout>

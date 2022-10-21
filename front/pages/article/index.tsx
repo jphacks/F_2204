@@ -1,8 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import EventCard from "../../components/molecules/EventCard";
 import BaseLayout from "../../components/templates/BaseLayout";
+import { AddIcon } from "@chakra-ui/icons";
 
 const HomePage: NextPage = () => {
   const router = useRouter();
@@ -22,6 +23,19 @@ const HomePage: NextPage = () => {
               />
             </Box>
           ))}
+        <Button
+          w={"50px"}
+          h={"50px"}
+          borderRadius="25px"
+          boxShadow={" 0 0 7px 0 rgba(0, 0, 0, .5)"}
+          position="fixed"
+          bottom="65px"
+          right="20px"
+          backgroundColor="gray.400"
+          onClick={() => router.push("/article/post")}
+        >
+          <AddIcon />
+        </Button>
       </Box>
     </BaseLayout>
   );

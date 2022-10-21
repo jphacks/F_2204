@@ -9,17 +9,18 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
+  Input,
 } from "@chakra-ui/react";
 import BottomFloatingButton from "../atoms/BottomFloatingButton";
 
 type Props = {
   buttonText: string;
   title: string;
-  text: string;
+  placeholder: string;
   onConfirm: () => void;
 };
 
-const ConfirmModal: FC<Props> = (props) => {
+const InputModal: FC<Props> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -34,12 +35,17 @@ const ConfirmModal: FC<Props> = (props) => {
         <ModalContent>
           <ModalHeader>{props.title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{props.text}</ModalBody>
+          <ModalBody>
+            <Input placeholder={props.placeholder} />
+          </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button variant="ghost" onClick={props.onConfirm}>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                onClose();
+                props.onConfirm();
+              }}
+            >
               OK
             </Button>
           </ModalFooter>
@@ -49,4 +55,4 @@ const ConfirmModal: FC<Props> = (props) => {
   );
 };
 
-export default ConfirmModal;
+export default InputModal;
