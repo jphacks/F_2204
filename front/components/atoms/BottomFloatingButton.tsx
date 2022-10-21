@@ -16,6 +16,7 @@ const FloatingBottomButton: FC<Props> = (props) => {
       left="calc(50% - 350px/2)"
       width="350px"
       height="60px"
+      onClick={props.onClick}
     >
       {props.text}
     </Button>
