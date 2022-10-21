@@ -14,3 +14,14 @@ DRF(Django REST Framework)におけるUnit Testについて記載する。
 - テーブル名の変更が効いていない可能性がある。
 - マイグレーションファイルを消しても、テーブルが消えるわけではない
 - Dockerのボリュームを消してあげないとだめ
+
+
+
+# get user token
+```
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser2", "password": "testpassword2"}' \
+  http://localhost:8000/api/token/
+```
