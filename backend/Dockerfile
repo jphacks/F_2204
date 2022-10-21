@@ -1,5 +1,5 @@
 # 公式からpython3.7 on alpine linuxイメージをpull
-FROM python:alpine
+FROM python:3.8-alpine
 # 作業ディレクトリを設定
 WORKDIR /usr/src/backend
 
