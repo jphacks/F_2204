@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False,
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -41,13 +44,23 @@ INSTALLED_APPS = [
     'rest_api',
     'rest_framework',
     'rest_framework.authtoken',  
+    'rest_framework_simplejwt',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+
+REST_FRAMEWORK = { 
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),  
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    
         'rest_framework.authentication.SessionAuthentication',
-    ]
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication', 
+    ),
+    'NON_FIELD_ERRORS_KEY': 'detail',
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
 MIDDLEWARE = [
