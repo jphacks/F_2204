@@ -1,17 +1,20 @@
-from dataclasses import field, fields
-from pyexpat import model
 from rest_framework import serializers
 from .models import CommunityArticlesOnly
 from .models import CommunityMembers, User, Article, Community
 from django.utils import timezone 
-
+from rest_framework import permissions
 DB_NAME="sokuseki_db"
 
 class UserSerializer(serializers.ModelSerializer):
+    permission_classes = [permissions.IsAuthenticated]
+    password = serializers.CharField(write_only=True, required=False)
     class Meta:
         model = User
         fields = '__all__'
         db_table=DB_NAME
+
+    def create(self, validated_data):
+        return User.objects.create_user(request_data=validated_data)
 
 class CommunityArticle(serializers.ModelSerializer):
     article = serializers.SerializerMethodField()
