@@ -16,12 +16,19 @@ const HomePage: NextPage = () => {
           borderRadius="10px"
           padding="15px"
         >
+          <Box width="full" textAlign="center" fontSize="2xl" fontWeight="bold">
+            プロダクト名
+          </Box>
+
           <LargeButton
             text="新規登録"
-            margin="0 0 20px 0"
+            margin="20px 0 15px 0"
             onClick={() => router.push("/signup")}
           />
-          <LargeButton text="ログイン" onClick={() => router.push("/signin")} />
+          <LargeButton
+            text="ログイン"
+            onClick={() => router.push("/article")}
+          />
         </Box>
       </Box>
     </BaseLayout>
