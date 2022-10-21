@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import BottomFloatingButton from "../../components/atoms/BottomFloatingButton";
+import InputModal from "../../components/molecules/InputModal";
 import BaseLayout from "../../components/templates/BaseLayout";
 
 const CommunityPage: NextPage = () => {
@@ -26,13 +26,21 @@ const CommunityPage: NextPage = () => {
             </Box>
           ))}
       </Box>
-      <BottomFloatingButton
+      <InputModal
+        buttonText="新しいコミュニティを作成する"
+        title="コミュニティ作成"
+        placeholder="コミュニティ名を入力"
+        onConfirm={() => {
+          console.log("コミュニティ作成");
+        }}
+      />
+      {/* <BottomFloatingButton
         text="新しいコミュニティを作成する"
         bottom="60px"
         height="70px"
         boxShadow={" 0 5px 10px 0 rgba(0, 0, 0, .3)"}
         onClick={() => console.log("作成")}
-      />
+      /> */}
     </BaseLayout>
   );
 };
