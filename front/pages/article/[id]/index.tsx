@@ -1,9 +1,11 @@
-import { Input, Textarea, Button, Box } from "@chakra-ui/react";
+import { Textarea, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import BottomFloatingButton from "../../../components/atoms/BottomFloatingButton";
+import { useRouter } from "next/router";
+import ConfirmModal from "../../../components/molecules/ConfirmModal";
 import BaseLayout from "../../../components/templates/BaseLayout";
 
 const DetailPage: NextPage = () => {
+  const router = useRouter();
   return (
     <BaseLayout>
       <Box
@@ -42,10 +44,13 @@ const DetailPage: NextPage = () => {
         value="必要なもの1, 必要なもの2, 必要なもの3..."
         readOnly
       />
-      <BottomFloatingButton
-        text="参加する"
-        bottomPos="65px"
-        onClick={() => console.log("参加")}
+      <ConfirmModal
+        buttonText="参加する"
+        title=""
+        text="参加しますか？"
+        onConfirm={() =>
+          router.push(`/article/${Number(router.query.id)}/private`)
+        }
       />
     </BaseLayout>
   );
