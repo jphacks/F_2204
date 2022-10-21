@@ -1,11 +1,13 @@
 import { Input, Textarea, Button, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import BaseLayout from "../../components/templates/BaseLayout";
+import BottomFloatingButton from "../../../components/atoms/BottomFloatingButton";
+import BaseLayout from "../../../components/templates/BaseLayout";
 
 const DetailPage: NextPage = () => {
   return (
     <BaseLayout>
       <Box
+        width="350px"
         display="flex"
         justifyContent="space-between"
         marginTop="20px"
@@ -34,15 +36,17 @@ const DetailPage: NextPage = () => {
       <Textarea
         placeholder=""
         marginTop="20px"
-        height="250px"
+        height="290px"
         resize="none"
         overflow="scroll"
         value="必要なもの1, 必要なもの2, 必要なもの3..."
         readOnly
       />
-      <Button width="100%" height="50px" marginTop="20px">
-        参加する
-      </Button>
+      <BottomFloatingButton
+        text="参加する"
+        bottomPos="65px"
+        onClick={() => console.log("参加")}
+      />
     </BaseLayout>
   );
 };

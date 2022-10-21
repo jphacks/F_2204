@@ -9,17 +9,19 @@ const HomePage: NextPage = () => {
   return (
     <BaseLayout hideSidebar={true}>
       <Box w="full" height="80vh" display="flex" alignItems="center">
-        <Box display="flex" flexDirection="column">
+        <Box
+          display="flex"
+          flexDirection="column"
+          borderWidth="1px"
+          borderRadius="10px"
+          padding="15px"
+        >
           <LargeButton
             text="新規登録"
             margin="0 0 20px 0"
             onClick={() => router.push("/signup")}
           />
-          <LargeButton
-            text="ログイン"
-            margin="0 0 20px 0"
-            onClick={() => router.push("/signin")}
-          />
+          <LargeButton text="ログイン" onClick={() => router.push("/signin")} />
         </Box>
       </Box>
     </BaseLayout>

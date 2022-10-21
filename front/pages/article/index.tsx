@@ -8,19 +8,21 @@ const HomePage: NextPage = () => {
   const router = useRouter();
   return (
     <BaseLayout>
-      {Array(10)
-        .fill("")
-        .map((_, index) => (
-          <Box key={index} marginBottom="20px">
-            <EventCard
-              title="料理名"
-              userName="ユーザー名"
-              communityName="コミュニティ名"
-              date="22/10/17"
-              onClick={() => router.push(`/detail/${index + 1}`)}
-            />
-          </Box>
-        ))}
+      <Box marginTop="20px" marginBottom="40px">
+        {Array(10)
+          .fill("")
+          .map((_, index) => (
+            <Box key={index} marginTop={index ? "20px" : "0"}>
+              <EventCard
+                title="料理名"
+                userName="ユーザー名"
+                communityName="コミュニティ名"
+                date="22/10/17"
+                onClick={() => router.push(`/article/${index + 1}`)}
+              />
+            </Box>
+          ))}
+      </Box>
     </BaseLayout>
   );
 };

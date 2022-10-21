@@ -13,7 +13,7 @@ const EventCard: FC<Props> = (props) => {
   return (
     <Box
       height={40}
-      minW="320px"
+      width="350px"
       borderWidth="1px"
       borderRadius="10px"
       overflow="hidden"
