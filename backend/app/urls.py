@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from backend.rest_api.views.community import CommunityArticleDetailPrivateAPIView
 from rest_api.views.community import CommunityArticleDetailAPIView
 from rest_api.views.community import CommunityArticlesAPIView 
 from rest_api.views import UserArticleList,UserArticleDetail,UserList, UserDetail
 from rest_api.views import ArticleList
-from rest_api.views import CommunityDetail, CommunityList,CommunityMembersAPIView
+from rest_api.views import CommunityDetail, CommunityList,CommunityMembersAPIView,CommunityJoin
 from rest_framework.urlpatterns import format_suffix_patterns
  
 # api一覧
@@ -30,12 +31,14 @@ urlpatterns = [
     path('api/users/<int:pk>/articles/', UserArticleList.as_view()),
     path('api/users/<int:user_id>/articles/<int:article_id>/', UserArticleDetail.as_view()),
     path('api/communities/', CommunityList.as_view()),
+    path('api/communities/join', CommunityJoin.as_view()), # コミュニティ に参加するAPI
     path('api/communities/<int:pk>/', CommunityDetail.as_view()),
     path('api/communities/<int:pk>/users/', CommunityMembersAPIView.as_view()),
     path('api/communities/<int:pk>/articles/', CommunityArticlesAPIView.as_view()), # コミュニティの記事一覧取得API
     path('api/communities/<int:community_id>/articles/<int:article_id>/', CommunityArticleDetailAPIView.as_view()), # コミュニティの記事一覧取得API
+    path('api/communities/<int:community_id>/articles/<int:article_id>/<int:user_id>/', CommunityArticleDetailPrivateAPIView.as_view()), # コミュニティの記事一覧取得API
     path('api/articles/', ArticleList.as_view())
-]
+] 
 
 urlpatterns = format_suffix_patterns(urlpatterns)
 
