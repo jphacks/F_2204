@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const IndexPage: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/article");
+    router.replace("/home");
   }, []);
   return <></>;
 };
