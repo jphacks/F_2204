@@ -7,9 +7,10 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 
 class ArticleList(APIView):
+    permission_classes = (IsAuthenticated,)
     # 記事一覧
     def get(self, request, format=None):
         article = Article.objects.all()

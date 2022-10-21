@@ -7,8 +7,7 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
-
+from rest_framework.permissions import AllowAny, IsAuthenticated
 class CommunityArticleDetailAPIView(APIView):
     def get_object(self, community_id, article_id):
         try:
@@ -49,6 +48,8 @@ class CommunityMembersAPIView(APIView):
 
 
 class CommunityList(APIView):
+    permission_classes = [AllowAny]
+
     def get(self,request, format=None):
         communities = Community.objects.all()
         selializer = CommunitySerializer(communities, many=True)

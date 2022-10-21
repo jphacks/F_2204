@@ -33,7 +33,8 @@ CORS_ORIGIN_WHITELIST = [
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get('DEBUG', default=0))
+# DEBUG = int(os.environ.get('DEBUG', default=0))
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -58,11 +59,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = { 
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        
     ),  
     'DEFAULT_AUTHENTICATION_CLASSES': (
-    
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication', 
     ),
     'NON_FIELD_ERRORS_KEY': 'detail',
