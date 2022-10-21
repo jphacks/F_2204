@@ -5,6 +5,16 @@ from django.utils import timezone
 from rest_framework import permissions
 DB_NAME="sokuseki_db"
 
+class AccountSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'profile', 'password')
+
+    def create(self, validated_data):
+        return User.objects.create_user(request_data=validated_data)
+
 class UserSerializer(serializers.ModelSerializer):
     permission_classes = [permissions.IsAuthenticated]
     password = serializers.CharField(write_only=True, required=False)
@@ -13,8 +23,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
         db_table=DB_NAME
 
-    def create(self, validated_data):
-        return User.objects.create_user(request_data=validated_data)
 
 class CommunityArticle(serializers.ModelSerializer):
     article = serializers.SerializerMethodField()
