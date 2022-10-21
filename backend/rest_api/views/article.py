@@ -1,6 +1,6 @@
 from ..models import Article, Community
 from ..serializer import ArticleSerializer
-from ..serializer import  CommunityArticlesSerializer
+from ..serializer import CommunityArticlesSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
@@ -9,8 +9,12 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 
+
 class ArticleList(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny, ]
     # 記事一覧
+
     def get(self, request, format=None):
         article = Article.objects.all()
         serializer = ArticleSerializer(article, many=True)
@@ -23,7 +27,7 @@ class ArticleList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
- 
+
 
 class ArticleDetail(APIView):
     def get_object(self, pk):

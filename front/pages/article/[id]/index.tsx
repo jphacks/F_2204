@@ -18,7 +18,7 @@ const DetailPage: NextPage = () => {
         <Box fontWeight="bold" marginRight="20px">
           日時
         </Box>
-        <Box fontWeight="bold">2022/10/1 9:00 ～ 18:00</Box>
+        <Box fontWeight="bold">2022/10/7 9:00 ～ 18:00</Box>
       </Box>
       <Box
         display="flex"
@@ -30,9 +30,7 @@ const DetailPage: NextPage = () => {
           参加予定者
         </Box>
         <Box>
-          <Box fontWeight="bold">@ユーザー名1</Box>
-          <Box fontWeight="bold">@ユーザー名2</Box>
-          <Box fontWeight="bold">@ユーザー名3</Box>
+          <Box fontWeight="bold">@Shunpei</Box>
         </Box>
       </Box>
       <Textarea
@@ -41,7 +39,7 @@ const DetailPage: NextPage = () => {
         height="290px"
         resize="none"
         overflow="scroll"
-        value="必要なもの1, 必要なもの2, 必要なもの3..."
+        value="今回はなし"
         readOnly
       />
       <ConfirmModal

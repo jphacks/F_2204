@@ -33,7 +33,7 @@ const DetailPage: NextPage = () => {
               fontWeight="bold"
             >
               <Box> 住所: </Box>
-              <Box> 〒123-4567 〇〇県〇〇市〇〇町1-2</Box>
+              <Box> 〒123-4567 福岡県福岡市東区1-2</Box>
             </Box>
             <Box
               display="flex"
@@ -67,9 +67,7 @@ const DetailPage: NextPage = () => {
             参加予定者
           </Box>
           <Box>
-            <Box fontWeight="bold">@ユーザー名1</Box>
-            <Box fontWeight="bold">@ユーザー名2</Box>
-            <Box fontWeight="bold">@ユーザー名3</Box>
+            <Box fontWeight="bold">@Shunpei</Box>
           </Box>
         </Box>
         <Textarea
@@ -78,7 +76,7 @@ const DetailPage: NextPage = () => {
           height="250px"
           resize="none"
           overflow="scroll"
-          value="必要なもの1, 必要なもの2, 必要なもの3..."
+          value="今回はなし"
           readOnly
         />
       </Box>

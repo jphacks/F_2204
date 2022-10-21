@@ -11,31 +11,33 @@ type Props = {
 
 const BaseLayout: FC<Props> = (props) => {
   return (
-    <div
-      className={css`
-        height: 100vh;
-        width: 100%;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow-x: hidden;
-        z-index: 1;
-        position: relative;
-      `}
-    >
+    <>
       <Header />
-      <main
+      <div
         className={css`
-          padding-top: 50px;
-          padding-bottom: ${!props.hideSidebar ? "30px" : "0"};
+          height: 100vh;
+          width: 100%;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          overflow-x: hidden;
+          z-index: 1;
+          position: relative;
         `}
       >
-        {props.children}
-      </main>
+        <main
+          className={css`
+            padding-top: 50px;
+            padding-bottom: ${!props.hideSidebar ? "30px" : "0"};
+          `}
+        >
+          {props.children}
+        </main>
 
-      {!props.hideSidebar && <Footer />}
-    </div>
+        {!props.hideSidebar && <Footer />}
+      </div>
+    </>
   );
 };
 
