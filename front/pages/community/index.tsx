@@ -2,12 +2,15 @@ import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import InputModal from "../../components/molecules/InputModal";
 import BaseLayout from "../../components/templates/BaseLayout";
+import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const CommunityPage: NextPage = () => {
+  const router = useRouter();
   return (
     <BaseLayout>
       <Box marginTop="10px">
-        {Array(10)
+        {Array(5)
           .fill("")
           .map((_, index) => (
             <Box
@@ -26,14 +29,21 @@ const CommunityPage: NextPage = () => {
             </Box>
           ))}
       </Box>
-      <InputModal
+      {/* <InputModal
         buttonText="新しいコミュニティを作成する"
         title="コミュニティ作成"
         placeholder="コミュニティ名を入力"
         onConfirm={() => {
           console.log("コミュニティ作成");
         }}
-      />
+      /> */}
+      <Box display="flex" marginTop="10px">
+        <Button height="50px">コミュニティに作成</Button>
+        <Button height="50px" onClick={() => router.push("/community/join")}>
+          コミュニティを参加
+        </Button>
+      </Box>
+
       {/* <BottomFloatingButton
         text="新しいコミュニティを作成する"
         bottom="60px"

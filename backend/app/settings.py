@@ -21,8 +21,8 @@ JWT_AUTH = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-     'http://127.0.0.1:3000', 
-     'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
 ]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -48,21 +48,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_api',
     'rest_framework',
-    'rest_framework.authtoken',  
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
 ]
 
 
-REST_FRAMEWORK = { 
+REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    ),  
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-    
+
         # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication', 
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'NON_FIELD_ERRORS_KEY': 'detail',
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
@@ -70,7 +70,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    #トークンの時間を120分に設定
+    # トークンの時間を120分に設定
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
     'ROTATE_REFRESH_TOKENS': True,
@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = { 
+DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DATABASE_ENGINE', 'django.db.backends.postgresql'),
         'NAME': os.environ.get('DATABASE_DB', os.path.join(BASE_DIR, 'db.sqlite3')),
