@@ -57,7 +57,7 @@ const PostPage: NextPage = () => {
         />
         <BottomFloatingButton
           text="作成する"
-          bottomPos="65px"
+          bottom="65px"
           onClick={() => router.push("/article")}
         />
       </Box>

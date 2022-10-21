@@ -25,7 +25,8 @@ const ConfirmModal: FC<Props> = (props) => {
     <>
       <BottomFloatingButton
         text={props.buttonText}
-        bottomPos="65px"
+        bottom="65px"
+        height="60px"
         onClick={onOpen}
       />
       <Modal isOpen={isOpen} onClose={onClose} size="xs" isCentered>
