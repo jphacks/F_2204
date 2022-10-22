@@ -34,7 +34,7 @@ SESSION_COOKIE_SECURE = True
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = int(os.environ.get('DEBUG', default=0))
 DEBUG=True
-ALLOWED_HOSTS = ["54.64.76.116","127.0.0.1","ec2-54-64-76-116.ap-northeast-1.compute.amazonaws.com"]
+ALLOWED_HOSTS = ["54.64.76.116","127.0.0.1","ec2-54-64-76-116.ap-northeast-1.compute.amazonaws.com",'localhost']
 
 
 # Application definition
