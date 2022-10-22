@@ -57,7 +57,7 @@ class ArticleDetail(APIView):
 
 class CommunityArticleList(APIView):
     authentication_classes = []
-    permission_classes = [AllowAny, ]
+    # permission_classes = [AllowAny, ]
 
     def get(self, request, community_id, *args, **kwargs):
         communities = get_object_or_404(Community, pk=community_id)

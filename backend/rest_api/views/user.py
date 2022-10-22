@@ -27,20 +27,22 @@ class AuthRegister(generics.CreateAPIView):
 
 
 class UserList(APIView):
+    permission_classes = [permissions.IsAdminUser]
     def get(self,request, format=None):
         users = User.objects.all()
         selializer = UserSerializer(users, many=True)
         return Response(selializer.data)
     
-    # def post(self, request, format=None):
-    #     serializer = UserSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserDetail(APIView):
+    permission_classes = [permissions.IsAuthenticated,]
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)

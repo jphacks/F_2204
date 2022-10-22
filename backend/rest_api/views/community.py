@@ -28,7 +28,7 @@ class CommunityArticleDetailAPIView(APIView):
 
 class CommunityArticlesAPIView(APIView):
     authentication_classes = []
-    permission_classes = [AllowAny, ]
+    # permission_classes = [AllowAny, ]
 
     def get(self, request, pk, *args, **kwargs):
         community = get_object_or_404(Community, pk=pk)
@@ -40,7 +40,7 @@ class CommunityArticlesAPIView(APIView):
 
 class CommunityMembersAPIView(APIView):
     authentication_classes = []
-    permission_classes = [AllowAny, ]
+    # permission_classes = [AllowAny, ]
 
     def get(self, request, pk, *args, **kwargs):
         communities = get_object_or_404(Community, pk=pk)
@@ -52,7 +52,7 @@ class CommunityMembersAPIView(APIView):
 
 class CommunityList(APIView):
     authentication_classes = []
-    permission_classes = (permissions.AllowAny,)
+    # permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
         communities = Community.objects.all()
