@@ -96,7 +96,7 @@ articles {
     string article_name 
     string uri
     string article_content
-    integer community_id FK
+  
     datetime meeting_time
     datetime created_at
 }
