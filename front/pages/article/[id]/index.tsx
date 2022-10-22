@@ -1,8 +1,9 @@
-import { Textarea, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import ConfirmModal from "../../../components/molecules/ConfirmModal";
 import BaseLayout from "../../../components/templates/BaseLayout";
+import { Textarea,Box } from '@chakra-ui/react';
+
 
 const DetailPage: NextPage = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const DetailPage: NextPage = () => {
         <Box fontWeight="bold" marginRight="20px">
           日時
         </Box>
+
         <Box fontWeight="bold">2022/10/7 9:00 ～ 18:00</Box>
       </Box>
       <Box
@@ -29,19 +31,22 @@ const DetailPage: NextPage = () => {
         <Box fontWeight="bold" marginRight="20px">
           参加予定者
         </Box>
+        
         <Box>
           <Box fontWeight="bold">@Shunpei</Box>
         </Box>
+
       </Box>
-      <Textarea
-        placeholder=""
+
+      <Textarea 
+      placeholder=""
         marginTop="20px"
         height="290px"
         resize="none"
         overflow="scroll"
-        value="今回はなし"
-        readOnly
-      />
+        value=""
+        readOnly/>
+
       <ConfirmModal
         buttonText="参加する"
         title=""

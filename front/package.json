@@ -11,15 +11,23 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.3.5",
+    "@chatscope/chat-ui-kit-react": "^1.9.7",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@emotion/css": "^11.10.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "axios": "^1.1.2",
     "framer-motion": "^6",
+    "iconify": "^1.4.0",
+    "leaflet": "^1.9.2",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "recoil": "^0.7.6"
+    "react-chat-elements": "^12.0.5",
+    "react-custom-scrollbars-2": "^4.5.0",
+    "react-dom": "^18.2.0",
+    "recoil": "^0.7.6",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/node": "18.8.3",
