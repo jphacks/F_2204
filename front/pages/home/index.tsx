@@ -17,7 +17,7 @@ const HomePage: NextPage = () => {
           padding="15px"
         >
           <Box width="full" textAlign="center" fontSize="2xl" fontWeight="bold">
-            プロダクト名
+            Yoriai
           </Box>
           <LargeButton
             text="新規登録"
